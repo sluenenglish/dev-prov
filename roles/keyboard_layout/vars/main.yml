@@ -1,0 +1,2 @@
+key_config: "{{ lookup('file', '../templates/gb') }}"
+key_list_entry: "{{ lookup('file', '../templates/evdev.xml') }}"

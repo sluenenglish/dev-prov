@@ -1,0 +1,22 @@
+---
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - git
+    - gcc
+    - make
+    - pkg-config
+    - libx11-dev
+    - libxtst-dev
+    - libxi-dev
+
+- name: Clone repo
+  git:
+    repo: https://github.com/alols/xcape.git
+    dest: /tmp/xcape/
+
+- name: Install xcape
+  make:
+    chdir: /tmp/xcape/

@@ -1,0 +1,100 @@
+partial alphanumeric_keys modifier_keys keypad_keys
+xkb_symbols "split_base" {
+
+    // Levels in Neo jargon
+    // --------------------------------------------------------------
+    // Ebene 1: normal
+    // Ebene 2: Shift
+    // Ebene 3: Mod3
+    // Ebene 4: Mod4 (for marking something use Shift + Mod4)
+    // Ebene 5: Shift + Mod3
+    // Ebene 6: Mod3 + Mod4
+    // Compose (not a level): Mod3 + Tab
+    // Feststelltaste (Capslock): Shift + Shift
+    // Mod4-Lock: Mod4 + Mod4
+    // Mod4-Lock: Shift + Mod3 + Tab
+
+    // Legend
+    // ===============
+    // Levels in Xkbmap jargon to be found here in the definitions. 
+    // These are the levels used, and Xorg's translations:
+    // --------------------------------------------------------------
+    // Xorg:       Level1                   Level2                   Level3                   Level4                   Level5                   Level6                   Level7                   Level8                   
+    // Neo:        Ebene1                   Ebene2                   Ebene3                   Ebene5                   Ebene4                   Pseudo-Ebene             Ebene6                   ???                      
+    // Keys (Neo): None                     Shift                    Mod3                     Mod3 + Shift             Mod4                     Mod4 + Shift             Mod3 + Mod4              Mod3 + Mod4 + Shift      
+
+
+    // Alphanumeric-keys
+    // ===============
+    key.type[Group1] = "EIGHT_LEVEL";
+
+    key <AE01>	{ [         1,     exclam,  onesuperior,   exclamdown, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE02>	{ [         2,         at,  twosuperior,    oneeighth, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE03>	{ [         3, numbersign, threesuperior,    sterling, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE04>	{ [         4,     dollar,   onequarter,       dollar, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE05>	{ [         5,    percent,      onehalf, threeeighths, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE07>	{ [         6, asciicircum, threequarters, fiveeighths, NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AE08>	{ [         7,  ampersand,    braceleft, seveneighths, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE09>	{ [         8,   asterisk,  bracketleft,    trademark, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE10>	{ [         9,  parenleft, bracketright,    plusminus, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE11>	{ [         0, parenright,   braceright,       degree, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AE12>	{ [     minus, underscore,    backslash, questiondown, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    // key <AE13>	{ [     equal,       plus, dead_cedilla,  dead_ogonek, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+
+    key <AD01>	{ [         q,          Q,           at,  Greek_OMEGA, question, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD02>	{ [         w,          W,        minus,      Lstroke, minus, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD03>	{ [         e,          E,        bracketleft,  bracketleft,    equal, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD04>	{ [         r,          R,         bracketright, bracketright, plus, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD05>	{ [         t,          T,       tslash,       Tslash, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD07>	{ [         y,          Y,    leftarrow,          yen, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD08>	{ [         u,          U,    underscore,      uparrow,underscore, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD09>	{ [         i,          I,   rightarrow,     idotless, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD10>	{ [         o,          O,       grave,     Ooblique, asciitilde, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD11>	{ [         p,          P,        plus,        THORN, bar, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AD12>	{ [bracketleft,  braceleft, dead_diaeresis, dead_abovering, NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    // key <AD13>	{ [bracketright, braceright, dead_tilde,  dead_macron, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+
+    key <CAPS>	{ [         Ctrl_L,          A,           ae,           AE, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC01>	{ [         a,          A,           ae,           AE, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC02>	{ [         s,          S,       ssharp,      section, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC03>	{ [         d,          D,    parenleft,          ETH, quotedbl,  NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC04>	{ [         f,          F,   parenright,  ordfeminine, apostrophe, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC05>	{ [         g,          G,          eng,          ENG, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC06>	{ [         BackSpace,  G,          eng,          ENG, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC07>	{ [         h,          H,      BackSpace,      Hstroke, BackSpace, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC08>	{ [         j,          J,    parenleft,    dead_horn, parenleft, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AC09>	{ [         k,          K,          kra,    ampersand, parenright, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC10>	{ [         l,          L,      lstroke,      Lstroke, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC11>	{ [ semicolon,    colon, dead_acute, dead_doubleacute, colon, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AC12>	{ [apostrophe, quotedbl, dead_circumflex,  dead_caron, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    // key <TLDE>	{ [     grave, asciitilde,      notsign,      notsign, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+
+    // key <BKSL>	{ [  Shift_L,          bar,   dead_grave,   dead_breve, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <LSGT>	{ [ backslash,        bar,           bar,    brokenbar, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB01>	{ [         z,          Z, guillemotleft,        less, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB02>	{ [         x,          X, guillemotright,    greater, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB03>	{ [         c,          C,     braceleft,    copyright, braceleft, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB04>	{ [         v,          V,     braceright, leftsinglequotemark, braceright, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB05>	{ [         b,          B, rightdoublequotemark, rightsinglequotemark, NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+    key <AB06>	{ [         Return,     N,            n,            N, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB07>	{ [         n,          N,            n,            N, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB08>	{ [         m,          M,           minus,    masculine, minus, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB09>	{ [     comma,       less, horizconnector,   multiply, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    key <AB10>	{ [    period,    greater, periodcentered,   division, NoSymbol, NoSymbol, NoSymbol, NoSymbol ]	};
+    // key <AB11>	{ [     Shift_R,   question, dead_belowdot, dead_abovedot, NoSymbol, NoSymbol, NoSymbol, NoSymbol ] };
+};
+
+
+partial alphanumeric_keys modifier_keys keypad_keys
+xkb_symbols "split" {
+
+    include "gb(split_base)"
+
+    name[Group1]= "English (Split)";
+
+    // include "shift(both_capslock)"
+    // include "level3(caps_switch)"
+    include "level3(bksl_switch)"
+    include "level5(lsgt_switch)"
+    include "level5(ralt_switch)"
+};

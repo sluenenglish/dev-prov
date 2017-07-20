@@ -1,0 +1,19 @@
+---
+
+- name: Insert layout into config
+  blockinfile:
+    path: /usr/share/X11/xkb/symbols/gb
+    backup: yes
+    marker: "// {mark} ANSIBLE MANAGED BLOCK"
+    content: "{{ key_config }}"
+
+- name: Insert entry into layout list
+  blockinfile:
+    path: /usr/share/X11/xkb/rules/evdev.xml
+    backup: yes
+    insertafter: "<description>English \\(UK, Dvorak\\)</description>"
+    marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    content: "{{ key_list_entry }}"
+
+- name: Refresh keymaps
+  shell: sudo dpkg-reconfigure xkb-data
