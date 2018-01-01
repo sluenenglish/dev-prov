@@ -15,5 +15,10 @@
     marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
     content: "{{ key_list_entry }}"
 
+- name: Remap caps to ctrl
+  lineinfile:
+    path: /etc/default/keyboard
+    line: 'XKBOPTIONS="ctrl:nocaps"'
+
 - name: Refresh keymaps
   shell: sudo dpkg-reconfigure xkb-data
