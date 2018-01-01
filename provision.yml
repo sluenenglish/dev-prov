@@ -39,6 +39,12 @@
         append: yes
         shell: /bin/zsh
 
+    - name: Install Vundle
+      git:
+        repo: 'https://github.com/VundleVim/Vundle.vim.git'
+        dest: '/home/sam/.vim/bundle/Vundle.vim'
+      become_user: sam
+
     - name: Get dotfiles
       git:
         repo: 'git@github.com:sluenenglish/dotfiles.git'
