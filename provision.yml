@@ -3,7 +3,6 @@
 - name: Provisioning environment
   hosts: localhost
   connection: local
-  become: yes
   vars_files:
     - vars/main.yml
   roles:
@@ -18,9 +17,13 @@
    - role: dropbox
    - role: xcape
    - role: keyboard_layout
+     become: yes
+   - role: slack
+     become: yes
 
   tasks:
     - name: Install packages
+      become: true
       apt:
         name: "{{ item }}"
         state: latest
@@ -31,6 +34,7 @@
         - virtualbox
         - vagrant
         - pgadmin3
+        - tig
 
     - name: "Add {{ user_name }} to docker group"
       user:
@@ -38,3 +42,18 @@
         groups: docker
         append: yes
         shell: /bin/zsh
+
+    - name: Install oh my zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      become: true
+      become_user: sam
+
+    - name: Get dotfiles
+      git:
+        repo: 'https://github.com/sluenenglish/dotfiles.git'
+        dest: /home/sam/dotfiles
+      become: true
+      become_user: sam
+
+    - name: Install dotfiles
+      shell: bash /home/sam/dotfiles/install

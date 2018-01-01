@@ -20,3 +20,9 @@
 - name: Install xcape
   make:
     chdir: /tmp/xcape/
+
+- name: Install xcape
+  make:
+    chdir: /tmp/xcape/
+    target: install
+  become: true
