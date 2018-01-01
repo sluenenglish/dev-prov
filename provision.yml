@@ -2,24 +2,20 @@
 
 - name: Provisioning environment
   hosts: localhost
+  become: true
   connection: local
   vars_files:
     - vars/main.yml
   roles:
    - role: cmprescott.chrome
-     become: yes
    - role: angstwad.docker_ubuntu
-     become: yes
    - role: tersmitten.pycharm
-     become: yes
      pycharm_version: 2017.1.3
    - role: skype
    - role: dropbox
    - role: xcape
    - role: keyboard_layout
-     become: yes
    - role: slack
-     become: yes
 
   tasks:
     - name: Install packages
@@ -43,17 +39,17 @@
         append: yes
         shell: /bin/zsh
 
-    - name: Install oh my zsh
-      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-      become: true
-      become_user: sam
-
     - name: Get dotfiles
       git:
-        repo: 'https://github.com/sluenenglish/dotfiles.git'
+        repo: 'git@github.com:sluenenglish/dotfiles.git'
         dest: /home/sam/dotfiles
-      become: true
       become_user: sam
 
     - name: Install dotfiles
       shell: bash /home/sam/dotfiles/install
+      become_user: sam
+
+    - name: Install oh my zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      become: true
+      become_user: sam
