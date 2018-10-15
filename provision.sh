@@ -7,7 +7,6 @@ sudo pip install ansible
 
 ansible-galaxy install \
     cmprescott.chrome \
-    angstwad.docker_ubuntu \
-    tersmitten.pycharm
+    angstwad.docker_ubuntu
 
 ansible-playbook provision.yml

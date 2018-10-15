@@ -9,13 +9,9 @@
   roles:
    - role: cmprescott.chrome
    - role: angstwad.docker_ubuntu
-   - role: tersmitten.pycharm
-     pycharm_version: 2017.1.3
    - role: skype
-   - role: dropbox
    - role: xcape
    - role: keyboard_layout
-   - role: slack
 
   tasks:
     - name: Install packages
@@ -55,7 +51,17 @@
       shell: bash /home/sam/dotfiles/install
       become_user: sam
 
+    - name: Change shell
+      shell: chsh -s /usr/local/bin/zsh sam
+
     - name: Install oh my zsh
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
       become: true
       become_user: sam
+
+    - name: Install snap packages
+      shell: snap install {{ item }} --classic
+      become: true
+      with_items:
+        - pycharm-professional
+        - slack
