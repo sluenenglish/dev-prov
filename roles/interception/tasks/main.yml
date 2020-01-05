@@ -1,0 +1,47 @@
+---
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - libyaml-cpp-dev
+    - libev-dev
+    - cmake
+
+- name: Clone repo
+  git:
+    repo: https://gitlab.com/interception/linux/tools.git
+    dest: /tmp/tools/
+
+- name: CMake compile
+  shell:
+    chdir: /tmp/tools/
+    cmd: cmake .
+
+- name: Make compile
+  make:
+    chdir: /tmp/tools/
+
+- name: Copy bin files
+  copy:
+    src: /tmp/tools/intercept
+    dest: /usr/bin/
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy bin files
+  copy:
+    src: /tmp/tools/udevmon
+    dest: /usr/bin/
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy bin files
+  copy:
+    src: /tmp/tools/uinput
+    dest: /usr/bin/
+    owner: root
+    group: root
+    mode: '0755'

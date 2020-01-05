@@ -8,10 +8,7 @@
     - vars/main.yml
   roles:
    - role: cmprescott.chrome
-   - role: angstwad.docker_ubuntu
-   - role: skype
-   - role: xcape
-   - role: keyboard_layout
+   - role: interception
 
   tasks:
     - name: Install packages
@@ -27,6 +24,19 @@
         - vagrant
         - pgadmin3
         - tig
+
+    - name: Install snap packages
+      shell: snap install {{ item }} --classic
+      become: true
+      with_items:
+        - pycharm-professional
+        - docker
+        - spotify
+
+    - name: Ensure group "docker" exists
+      group:
+            name: docker    
+            state: present
 
     - name: "Add {{ user_name }} to docker group"
       user:
@@ -47,21 +57,21 @@
         dest: /home/sam/dotfiles
       become_user: sam
 
-    - name: Install dotfiles
-      shell: bash /home/sam/dotfiles/install
-      become_user: sam
-
     - name: Change shell
-      shell: chsh -s /usr/local/bin/zsh sam
+      shell: chsh -s $(which zsh) sam
+
+    - name: Get base16 shell
+      git:
+        repo: 'https://github.com/chriskempson/base16-shell.git'
+        dest: ~/.config/base16-shell
+      become_user: sam
 
     - name: Install oh my zsh
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
       become: true
       become_user: sam
 
-    - name: Install snap packages
-      shell: snap install {{ item }} --classic
-      become: true
-      with_items:
-        - pycharm-professional
-        - slack
+    - name: Install dotfiles
+      shell: bash /home/sam/dotfiles/install
+      become_user: sam
+

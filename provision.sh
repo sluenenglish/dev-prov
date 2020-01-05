@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 sudo apt-get update
-sudo apt-get install -y python-pip
+sudo apt-get install -y python-pip snapd
 
 sudo pip install ansible
 
